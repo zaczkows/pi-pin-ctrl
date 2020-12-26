@@ -8,3 +8,5 @@ edition = "2018"
 
 [dependencies]
 bcm2835-rs = { git = "https://github.com/zaczkows/bcm2835-rs.git", branch = "main" }
+env_logger = "0.8"
+log = "0.4"
