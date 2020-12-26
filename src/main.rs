@@ -10,6 +10,11 @@ fn main() {
     if gpio.is_none() {
         log::error!("Failed to initialize chip");
     }
-    let gpio = gpio.unwrap();
-    log::debug!("Pin state: {:?}", gpio.read(18));
+    let mut gpio = gpio.unwrap();
+    for i in 17..18 {
+        gpio.fsel(i, bcm2835_rs::FunctionSelect::Outp);
+        gpio.write(i, bcm2835_rs::PinVoltage::High);
+        gpio.fsel(i, bcm2835_rs::FunctionSelect::Inpt);
+        log::debug!("Pin state: {}={:?}", i, gpio.read(i));
+    }
 }
